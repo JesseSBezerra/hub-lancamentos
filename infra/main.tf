@@ -93,6 +93,22 @@ resource "aws_iam_role_policy_attachment" "ecs_execution_attach" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
+resource "aws_iam_role_policy" "dynamodb_access" {
+  name = "${var.app_name}-dynamodb-access"
+  role = aws_iam_role.ecs_task_execution_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [{
+      Effect   = "Allow",
+      Action   = [
+        "dynamodb:*"
+      ],
+      Resource = "*"
+    }]
+  })
+}
+
 resource "aws_iam_policy" "dynamodb_managed_policy" {
   name = "${var.app_name}-dynamodb-managed-policy"
 
