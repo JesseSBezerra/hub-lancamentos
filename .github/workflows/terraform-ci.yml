@@ -62,7 +62,7 @@ jobs:
           docker push ${{ steps.login-ecr.outputs.registry }}/hub-lancamentos:$IMAGE_TAG
 
   terraform:
-    needs: [decidir]
+    needs: [decidir, build-push-deploy]
     runs-on: ubuntu-latest
     if: needs.decidir.outputs.destroy_flag == 'true' || needs.decidir.outputs.destroy_flag == 'false'
     steps:
