@@ -23,43 +23,8 @@ jobs:
           flag=$(yq '.destroy' projeto.yml)
           echo "destroy_flag=$flag" >> $GITHUB_OUTPUT
 
-  terraform:
-    needs: decidir
-    runs-on: ubuntu-latest
-    if: needs.decidir.outputs.destroy_flag == 'true' || needs.decidir.outputs.destroy_flag == 'false'
-    steps:
-      - name: Checkout do código
-        uses: actions/checkout@v3
-
-      - name: Configurar AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          aws-region: sa-east-1
-
-      - name: Instalar Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.6.6
-
-      - name: Inicializar Terraform
-        run: terraform init
-        working-directory: infra
-
-      - name: Terraform Destroy
-        if: needs.decidir.outputs.destroy_flag == 'true'
-        run: terraform destroy -auto-approve -var-file="terraform.tfvars"
-        working-directory: infra
-
-      - name: Terraform Apply
-        if: needs.decidir.outputs.destroy_flag == 'false' || needs.decidir.outputs.destroy_flag == ''
-        run: terraform apply -auto-approve -var-file="terraform.tfvars"
-        working-directory: infra
-
   build-push-deploy:
-    needs: terraform
+    needs: decidir
     runs-on: ubuntu-latest
     if: needs.decidir.outputs.destroy_flag != 'true'
     steps:
@@ -80,7 +45,6 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: sa-east-1
 
       - name: Login no ECR
@@ -97,10 +61,36 @@ jobs:
           IMAGE_TAG=latest
           docker push ${{ steps.login-ecr.outputs.registry }}/hub-lancamentos:$IMAGE_TAG
 
-      - name: Atualizar serviço ECS
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+  terraform:
+    needs: [decidir, build-push-deploy]
+    runs-on: ubuntu-latest
+    if: needs.decidir.outputs.destroy_flag == 'true' || needs.decidir.outputs.destroy_flag == 'false'
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Configurar AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          task-definition: infra/ecs-task-definition.json
-          service: hub-lancamentos-service
-          cluster: hub-central-cluster
-          wait-for-service-stability: true
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: sa-east-1
+
+      - name: Instalar Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.6.6
+
+      - name: Inicializar Terraform
+        run: terraform init
+        working-directory: infra
+
+      - name: Terraform Destroy
+        if: needs.decidir.outputs.destroy_flag == 'true'
+        run: terraform destroy -auto-approve -var-file="terraform.tfvars"
+        working-directory: infra
+
+      - name: Terraform Apply
+        if: needs.decidir.outputs.destroy_flag == 'false' || needs.decidir.outputs.destroy_flag == ''
+        run: terraform apply -auto-approve -var-file="terraform.tfvars"
+        working-directory: infra
