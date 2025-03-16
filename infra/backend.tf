@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket         = "hub-lancamentos-terraform-state"
-    key            = "env/terraform.tfstate"
+    bucket         = "tfstate-hub-lancamentos"
+    key            = "hub-lancamentos/terraform.tfstate"
     region         = "sa-east-1"
     dynamodb_table = "terraform-locks"
     encrypt        = true
