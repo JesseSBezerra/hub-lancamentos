@@ -40,6 +40,10 @@ jobs:
       - name: Build com Maven
         run: mvn clean package -DskipTests
 
+      - name: Definir tag única da imagem
+        id: build_tag
+        run: echo "image_tag=${{ github.sha }}" >> $GITHUB_OUTPUT  
+
       - name: Configurar AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -53,13 +57,12 @@ jobs:
 
       - name: Build da imagem Docker
         run: |
-          IMAGE_TAG=latest
-          docker build -t ${{ steps.login-ecr.outputs.registry }}/hub-lancamentos:$IMAGE_TAG .
+          docker build -t ${{ steps.login-ecr.outputs.registry }}/hub-lancamentos:${{ steps.build_tag.outputs.image_tag }} .
 
       - name: Push da imagem para o ECR
         run: |
-          IMAGE_TAG=latest
-          docker push ${{ steps.login-ecr.outputs.registry }}/hub-lancamentos:$IMAGE_TAG
+          docker push ${{ steps.login-ecr.outputs.registry }}/hub-lancamentos:${{ steps.build_tag.outputs.image_tag }}
+
 
   terraform:
     needs: [decidir, build-push-deploy]
@@ -84,6 +87,12 @@ jobs:
       - name: Inicializar Terraform
         run: terraform init
         working-directory: infra
+
+      - name: Atualizar ecs_task_definition.json com a nova imagem
+        if: needs.decidir.outputs.destroy_flag != 'true'
+        run: |
+          IMAGE_TAG=${{ needs.build-push.outputs.image_tag }}
+          sed -i "s|IMAGE_PLACEHOLDER|${{ steps.login-ecr.outputs.registry }}/hub-lancamentos:${IMAGE_TAG}|" infra/ecs-task-definition.json  
 
       - name: Terraform Destroy
         if: needs.decidir.outputs.destroy_flag == 'true'
