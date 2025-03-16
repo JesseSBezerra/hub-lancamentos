@@ -6,4 +6,3 @@ container_port = 8080
 desired_count = 1
 ecr_repo_name = "hub-lancamentos"
 dynamodb_table_name = "tbl_lancamento"
-public_subnet_ids = ["subnet-xxx", "subnet-yyy"] # IDs reais

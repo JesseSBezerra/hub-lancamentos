@@ -1,10 +1,28 @@
-resource "aws_dynamodb_table" "lancamento_table" {
-  name           = "tbl_lancamento"
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "id"
+provider "aws" {
+  region = var.aws_region
+}
 
-  attribute {
-    name = "id"
-    type = "S"
+terraform {
+  backend "s3" {
+    bucket         = "tfstate-hub-lancamentos"
+    key            = "state/terraform.tfstate"
+    region         = "sa-east-1"
+    dynamodb_table = "terraform-locks"
   }
+}
+
+module "network" {
+  source = "./network"
+}
+
+module "ecs" {
+  source = "./ecs"
+}
+
+module "ecr" {
+  source = "./ecr"
+}
+
+module "dynamodb" {
+  source = "./dynamodb"
 }

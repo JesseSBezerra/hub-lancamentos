@@ -6,4 +6,3 @@ variable "container_port" {}
 variable "desired_count" {}
 variable "ecr_repo_name" {}
 variable "dynamodb_table_name" {}
-variable "public_subnet_ids" { type = list(string) }
