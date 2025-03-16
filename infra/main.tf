@@ -1,28 +1,24 @@
-provider "aws" {
-  region = var.aws_region
-}
-
-terraform {
-  backend "s3" {
-    bucket         = "tfstate-hub-lancamentos"
-    key            = "state/terraform.tfstate"
-    region         = "sa-east-1"
-    dynamodb_table = "terraform-locks"
-  }
-}
-
 module "network" {
   source = "./network"
-}
-
-module "ecs" {
-  source = "./ecs"
+  vpc_cidr = var.vpc_cidr
+  public_subnet_cidrs = var.public_subnet_cidrs
 }
 
 module "ecr" {
   source = "./ecr"
+  ecr_repo_name = var.ecr_repo_name
 }
 
 module "dynamodb" {
   source = "./dynamodb"
+  dynamodb_table_name = var.dynamodb_table_name
+}
+
+module "ecs" {
+  source = "./ecs"
+  app_name = var.app_name
+  container_port = var.container_port
+  desired_count = var.desired_count
+  subnet_ids = module.network.public_subnet_ids
+  ecr_repo_url = module.ecr.ecr_repo_url
 }
