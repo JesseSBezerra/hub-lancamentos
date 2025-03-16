@@ -105,7 +105,7 @@ jobs:
       - name: Gerar tfvars com nova imagem
         if: needs.decidir.outputs.destroy_flag != 'true'
         run: |
-          echo 'ecr_image_url = "${{ needs.build-push-deploy.outputs.ecr_registry }}/hub-lancamentos:${{ needs.build-push-deploy.outputs.image_tag }}"' > infra/variables.tf  
+          echo 'variable "ecr_image_url" { default = "397685870114.dkr.ecr.sa-east-1.amazonaws.com/hub-lancamentos:${{ needs.build-push-deploy.outputs.image_tag }}" }' > infra/variables.tf  
 
       - name: Terraform Apply
         if: needs.decidir.outputs.destroy_flag == 'false' || needs.decidir.outputs.destroy_flag == ''
