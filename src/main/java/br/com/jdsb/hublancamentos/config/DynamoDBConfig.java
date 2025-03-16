@@ -6,12 +6,14 @@ import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import lombok.extern.log4j.Log4j2;
 import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@Log4j2
 @EnableDynamoDBRepositories(basePackages = "br.com.jdsb.hublancamentos.repository")
 public class DynamoDBConfig {
 
@@ -31,13 +33,9 @@ public class DynamoDBConfig {
 
     @Bean
     public String vercao() {
+        log.info("Versão 1.0.0");
         System.out.println("1.0.0");
         return "1.0.0";
-    }
-
-    @Bean
-    public DynamoDBMapper dynamoDBMapper(AmazonDynamoDB amazonDynamoDB) {
-        return new DynamoDBMapper(amazonDynamoDB);
     }
 
 }
