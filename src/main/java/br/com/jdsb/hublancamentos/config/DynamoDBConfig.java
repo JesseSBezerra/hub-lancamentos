@@ -26,11 +26,13 @@ public class DynamoDBConfig {
         AmazonDynamoDBClientBuilder builder = AmazonDynamoDBClientBuilder.standard()
                 .withRegion(region);
 
-        if (dynamoEndpoint != null && !dynamoEndpoint.isBlank()) {
-            builder.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(dynamoEndpoint, region));
-        }
-
         return builder.build(); // credenciais virão automaticamente da Task IAM Role (no ECS)
+    }
+
+    @Bean
+    public String vercao() {
+        System.out.println("1.0.0");
+        return "1.0.0";
     }
 
     @Bean
