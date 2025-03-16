@@ -95,7 +95,7 @@ jobs:
         if: needs.decidir.outputs.destroy_flag != 'true'
         run: |
           IMAGE_TAG=${{ needs.build-push-deploy.outputs.image_tag }}
-          sed -i "s|IMAGE_PLACEHOLDER|${{ steps.login-ecr.outputs.registry }}/hub-lancamentos:${IMAGE_TAG}|" infra/ecs-task-definition.json
+          sed -i "s|IMAGE_PLACEHOLDER|397685870114.dkr.ecr.sa-east-1.amazonaws.com/hub-lancamentos:${IMAGE_TAG}|" infra/ecs-task-definition.json
 
       - name: Terraform Destroy
         if: needs.decidir.outputs.destroy_flag == 'true'
