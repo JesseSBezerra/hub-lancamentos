@@ -93,6 +93,11 @@ resource "aws_iam_role_policy_attachment" "ecs_execution_attach" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
+resource "aws_cloudwatch_log_group" "ecs_log_group" {
+  name              = "/ecs/${var.app_name}"
+  retention_in_days = 1 # ou outro valor que desejar
+}
+
 resource "aws_ecs_task_definition" "app_task" {
   family                   = "${var.app_name}-task"
   network_mode             = "awsvpc"
@@ -111,7 +116,15 @@ resource "aws_ecs_task_definition" "app_task" {
           hostPort      = var.container_port,
           protocol      = "tcp"
         }
-      ]
+      ],
+      logConfiguration = {
+        logDriver = "awslogs",
+        options = {
+        awslogs-group         = "/ecs/${var.app_name}"
+        awslogs-region        = var.region
+        awslogs-stream-prefix = var.app_name
+        }
+    }
     }
   ])
 }
