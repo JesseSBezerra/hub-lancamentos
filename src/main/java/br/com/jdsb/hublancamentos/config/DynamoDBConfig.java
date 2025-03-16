@@ -19,7 +19,7 @@ public class DynamoDBConfig {
     private String region;
 
     @Value("${amazon.dynamodb.endpoint:}")
-    private String dynamoEndpoint; // opcional para local/dev
+    private String dynamoEndpoint; // opcional para local/dev ok
 
     @Bean
     public AmazonDynamoDB amazonDynamoDB() {
