@@ -20,9 +20,6 @@ public class DynamoDBConfig {
     @Value("${amazon.dynamodb.region}")
     private String region;
 
-    @Value("${amazon.dynamodb.endpoint:}")
-    private String dynamoEndpoint; // opcional para local/dev ok
-
     @Bean
     public AmazonDynamoDB amazonDynamoDB() {
         AmazonDynamoDBClientBuilder builder = AmazonDynamoDBClientBuilder.standard()
