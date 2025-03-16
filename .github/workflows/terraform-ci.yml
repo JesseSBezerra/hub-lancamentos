@@ -110,5 +110,5 @@ jobs:
         with:
           task-definition: infra/ecs-task-definition.json
           service: hub-lancamentos-service
-          cluster: hub-lancamentos
+          cluster: hub-lancamentos-cluster
           wait-for-service-stability: true
