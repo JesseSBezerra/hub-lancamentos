@@ -102,10 +102,10 @@ jobs:
         run: terraform destroy -auto-approve -var-file="terraform.tfvars"
         working-directory: infra
 
-      - name: Gerar tfvars com nova imagem
+      - name: Gerar terraform.tfvars com nova imagem
         if: needs.decidir.outputs.destroy_flag != 'true'
         run: |
-          echo 'variable "ecr_image_url" { default = "397685870114.dkr.ecr.sa-east-1.amazonaws.com/hub-lancamentos:${{ needs.build-push-deploy.outputs.image_tag }}" }' > infra/variables.tf  
+          echo "ecr_image_url = \"397685870114.dkr.ecr.sa-east-1.amazonaws.com/hub-lancamentos:${{ needs.build-push-deploy.outputs.image_tag }}\"" > infra/terraform.tfvars
 
       - name: Terraform Apply
         if: needs.decidir.outputs.destroy_flag == 'false' || needs.decidir.outputs.destroy_flag == ''
