@@ -8,7 +8,7 @@
   "containerDefinitions": [
     {
       "name": "hub-lancamentos-container",
-      "image": "397685870114.dkr.ecr.sa-east-1.amazonaws.com/hub-lancamentos:latest",
+      "image": "IMAGE_PLACEHOLDER",
       "portMappings": [
         {
           "containerPort": 8080,
