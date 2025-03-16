@@ -93,9 +93,8 @@ resource "aws_iam_role_policy_attachment" "ecs_execution_attach" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
-resource "aws_iam_role_policy" "dynamodb_access" {
-  name = "${var.app_name}-dynamodb-access"
-  role = aws_iam_role.ecs_task_execution_role.id
+resource "aws_iam_policy" "dynamodb_managed_policy" {
+  name = "${var.app_name}-dynamodb-managed-policy"
 
   policy = jsonencode({
     Version = "2012-10-17",
@@ -111,8 +110,9 @@ resource "aws_iam_role_policy" "dynamodb_access" {
 
 resource "aws_iam_role_policy_attachment" "ecs_task_dynamodb_attach" {
   role       = aws_iam_role.ecs_task_execution_role.name
-  policy_arn = aws_iam_role_policy.dynamodb_access.arn
+  policy_arn = aws_iam_policy.dynamodb_managed_policy.arn
 }
+
 
 
 resource "aws_cloudwatch_log_group" "ecs_log_group" {
