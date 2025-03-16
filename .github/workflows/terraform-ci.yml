@@ -46,14 +46,17 @@ jobs:
 
       - name: Inicializar Terraform
         run: terraform init
+        working-directory: infra
 
       - name: Terraform Destroy
         if: needs.decidir.outputs.destroy_flag == 'true'
         run: terraform destroy -auto-approve -var-file="terraform.tfvars"
+        working-directory: infra
 
       - name: Terraform Apply
         if: needs.decidir.outputs.destroy_flag == 'false' || needs.decidir.outputs.destroy_flag == ''
         run: terraform apply -auto-approve -var-file="terraform.tfvars"
+        working-directory: infra
 
   build-push-deploy:
     needs: terraform
@@ -89,7 +92,7 @@ jobs:
       - name: Atualizar serviço ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: ecs-task-definition.json
+          task-definition: infra/ecs-task-definition.json
           service: hub-lancamentos-service
           cluster: hub-central-cluster
           wait-for-service-stability: true
