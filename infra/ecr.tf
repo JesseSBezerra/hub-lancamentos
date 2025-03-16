@@ -1,3 +1,3 @@
-resource "aws_ecr_repository" "app_repo" {
-  name = var.app_name
+resource "aws_ecr_repository" "hub_lancamentos" {
+  name = var.ecr_repo_name
 }
