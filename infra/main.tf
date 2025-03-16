@@ -109,6 +109,12 @@ resource "aws_iam_role_policy" "dynamodb_access" {
   })
 }
 
+resource "aws_iam_role_policy_attachment" "ecs_task_dynamodb_attach" {
+  role       = aws_iam_role.ecs_task_execution_role.name
+  policy_arn = aws_iam_role_policy.dynamodb_access.arn
+}
+
+
 resource "aws_cloudwatch_log_group" "ecs_log_group" {
   name              = "/ecs/${var.app_name}"
   retention_in_days = 1 # ou outro valor que desejar
