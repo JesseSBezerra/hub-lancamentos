@@ -2,8 +2,8 @@
   "family": "hub-lancamentos-task",
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
-  "cpu": 512,
-  "memory": 1024,
+  "cpu": "512",
+  "memory": "1024",
   "executionRoleArn": "arn:aws:iam::397685870114:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
