@@ -26,7 +26,7 @@ jobs:
   build-push-deploy:
     needs: decidir
     runs-on: ubuntu-latest
-    if: needs.decidir.outputs.destroy_flag != 'true'
+    if: needs.decidir.outputs.destroy_flag == 'true' || needs.decidir.outputs.destroy_flag == 'false'
     steps:
       - name: Checkout do código
         uses: actions/checkout@v3
