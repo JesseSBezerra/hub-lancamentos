@@ -1,0 +1,15 @@
+{
+  "namespace": "br.com.jdsb.hublancamentos.avro",
+  "type": "record",
+  "name": "LancamentoEvent",
+  "fields": [
+    { "name": "id", "type": "string" },
+    { "name": "clientId", "type": "string" },
+    { "name": "clientSegmento", "type": "string" },
+    { "name": "valorLancamento", "type": "double" },
+    { "name": "vencimentoLancamento", "type": "string" },
+    { "name": "descontoLancamento", "type": "double" },
+    { "name": "jurosLancamento", "type": "double" },
+    { "name": "dataLancamento", "type": "string" }
+  ]
+}
