@@ -106,12 +106,3 @@ jobs:
         if: needs.decidir.outputs.destroy_flag == 'false' || needs.decidir.outputs.destroy_flag == ''
         run: terraform apply -auto-approve -var-file="terraform.tfvars"
         working-directory: infra
-
-      - name: Actualization serviço ECS
-        if: needs.decidir.outputs.destroy_flag != 'true'
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-        with:
-          task-definition: infra/ecs-task-definition.json
-          service: hub-lancamentos-service
-          cluster: hub-lancamentos-cluster
-          wait-for-service-stability: true
