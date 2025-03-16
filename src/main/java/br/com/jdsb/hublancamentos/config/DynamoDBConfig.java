@@ -2,15 +2,19 @@ package br.com.jdsb.hublancamentos.config;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.client.builder.AwsClientBuilder;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import lombok.extern.log4j.Log4j2;
 import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 @Log4j2
@@ -21,11 +25,25 @@ public class DynamoDBConfig {
     private String region;
 
     @Bean
-    public AmazonDynamoDB amazonDynamoDB() {
-        AmazonDynamoDBClientBuilder builder = AmazonDynamoDBClientBuilder.standard()
-                .withRegion(region);
+    @Primary
+    public DynamoDBMapperConfig dynamoDBMapperConfig() {
+        return DynamoDBMapperConfig.DEFAULT;
+    }
 
-        return builder.build(); // credenciais virão automaticamente da Task IAM Role (no ECS)
+
+    @Bean
+    @Primary
+    public DynamoDBMapper dynamoDBMapper(AmazonDynamoDB amazonDynamoDB,
+                                         DynamoDBMapperConfig config) {
+        return new DynamoDBMapper(amazonDynamoDB, config);
+    }
+
+    @Bean
+    @Primary
+    public AmazonDynamoDB amazonDynamoDB() {
+        return AmazonDynamoDBClientBuilder.standard()
+                .withCredentials(new DefaultAWSCredentialsProviderChain())
+                .withRegion(Regions.fromName(region)).build();
     }
 
     @Bean
