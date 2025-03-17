@@ -41,9 +41,7 @@ public class DynamoDBConfig {
     @Bean
     @Primary
     public AmazonDynamoDB amazonDynamoDB() {
-        return AmazonDynamoDBClientBuilder.standard()
-                .withCredentials(new DefaultAWSCredentialsProviderChain())
-                .withRegion(Regions.fromName(region)).build();
+        return AmazonDynamoDBClientBuilder.defaultClient();
     }
 
     @Bean
