@@ -1,4 +1,4 @@
-package br.com.jdsb.hublancamentos;
+package br.com.jdsb.hub;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

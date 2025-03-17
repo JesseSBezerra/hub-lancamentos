@@ -1,4 +1,4 @@
-package br.com.jdsb.hublancamentos.config;
+package br.com.jdsb.hub.config;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Primary;
 
 @Configuration
 @Log4j2
-@EnableDynamoDBRepositories(basePackages = "br.com.jdsb.hublancamentos.repository")
+@EnableDynamoDBRepositories(basePackages = "br.com.jdsb.hub.repository")
 public class DynamoDBConfig {
 
     @Value("${amazon.dynamodb.region}")

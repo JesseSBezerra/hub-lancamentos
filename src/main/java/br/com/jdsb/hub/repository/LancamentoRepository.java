@@ -1,6 +1,6 @@
-package br.com.jdsb.hublancamentos.repository;
+package br.com.jdsb.hub.repository;
 
-import br.com.jdsb.hublancamentos.entity.LancamentoEntity;
+import br.com.jdsb.hub.entity.LancamentoEntity;
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.repository.CrudRepository;
 

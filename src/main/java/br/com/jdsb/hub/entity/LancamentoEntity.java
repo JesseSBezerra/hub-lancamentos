@@ -1,7 +1,7 @@
-package br.com.jdsb.hublancamentos.entity;
+package br.com.jdsb.hub.entity;
 
-import br.com.jdsb.hublancamentos.converter.LocalDateConverter;
-import br.com.jdsb.hublancamentos.converter.UUIDConverter;
+import br.com.jdsb.hub.converter.LocalDateConverter;
+import br.com.jdsb.hub.converter.UUIDConverter;
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import lombok.Data;
 

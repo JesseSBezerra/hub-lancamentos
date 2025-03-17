@@ -1,4 +1,4 @@
-package br.com.jdsb.hublancamentos.dto;
+package br.com.jdsb.hub.dto;
 
 import lombok.Data;
 

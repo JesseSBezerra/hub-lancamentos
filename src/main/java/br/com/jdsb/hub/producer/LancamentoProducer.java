@@ -1,7 +1,6 @@
-package br.com.jdsb.hublancamentos.producer;
+package br.com.jdsb.hub.producer;
 
-import br.com.jdsb.hublancamentos.avro.LancamentoEvent;
-import br.com.jdsb.hublancamentos.dto.LancamentoDTO;
+import br.com.jdsb.hub.avro.LancamentoEvent;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.kafka.core.KafkaTemplate;

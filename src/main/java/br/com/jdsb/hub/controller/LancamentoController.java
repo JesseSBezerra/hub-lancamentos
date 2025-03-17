@@ -1,7 +1,7 @@
-package br.com.jdsb.hublancamentos.controller;
+package br.com.jdsb.hub.controller;
 
-import br.com.jdsb.hublancamentos.dto.LancamentoDTO;
-import br.com.jdsb.hublancamentos.services.LancamentoService;
+import br.com.jdsb.hub.dto.LancamentoDTO;
+import br.com.jdsb.hub.services.LancamentoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

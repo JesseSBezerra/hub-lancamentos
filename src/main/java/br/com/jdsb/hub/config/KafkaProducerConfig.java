@@ -1,7 +1,6 @@
-package br.com.jdsb.hublancamentos.config;
+package br.com.jdsb.hub.config;
 
-import br.com.jdsb.hublancamentos.avro.LancamentoEvent;
-import br.com.jdsb.hublancamentos.dto.LancamentoDTO;
+import br.com.jdsb.hub.avro.LancamentoEvent;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import org.apache.kafka.clients.producer.ProducerConfig;

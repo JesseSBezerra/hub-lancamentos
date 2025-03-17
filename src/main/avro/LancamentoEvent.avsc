@@ -1,5 +1,5 @@
 {
-  "namespace": "br.com.jdsb.hublancamentos.avro",
+  "namespace": "br.com.jdsb.hub.avro",
   "type": "record",
   "name": "LancamentoEvent",
   "fields": [

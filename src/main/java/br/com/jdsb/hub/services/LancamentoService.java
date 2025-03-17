@@ -1,10 +1,10 @@
-package br.com.jdsb.hublancamentos.services;
+package br.com.jdsb.hub.services;
 
-import br.com.jdsb.hublancamentos.avro.LancamentoEvent;
-import br.com.jdsb.hublancamentos.dto.LancamentoDTO;
-import br.com.jdsb.hublancamentos.entity.LancamentoEntity;
-import br.com.jdsb.hublancamentos.mapper.LancamentoMapper;
-import br.com.jdsb.hublancamentos.repository.LancamentoRepository;
+import br.com.jdsb.hub.avro.LancamentoEvent;
+import br.com.jdsb.hub.dto.LancamentoDTO;
+import br.com.jdsb.hub.entity.LancamentoEntity;
+import br.com.jdsb.hub.mapper.LancamentoMapper;
+import br.com.jdsb.hub.repository.LancamentoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;

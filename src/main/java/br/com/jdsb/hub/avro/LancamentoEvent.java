@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package br.com.jdsb.hublancamentos.avro;
+package br.com.jdsb.hub.avro;
 
 import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
@@ -14,10 +14,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -5155952438412671678L;
+  private static final long serialVersionUID = 2563004083925350035L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"LancamentoEvent\",\"namespace\":\"br.com.jdsb.hublancamentos.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"string\"},{\"name\":\"clientId\",\"type\":\"string\"},{\"name\":\"clientSegmento\",\"type\":\"string\"},{\"name\":\"valorLancamento\",\"type\":\"double\"},{\"name\":\"vencimentoLancamento\",\"type\":\"string\"},{\"name\":\"descontoLancamento\",\"type\":\"double\"},{\"name\":\"jurosLancamento\",\"type\":\"double\"},{\"name\":\"dataLancamento\",\"type\":\"string\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"LancamentoEvent\",\"namespace\":\"br.com.jdsb.hub.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"string\"},{\"name\":\"clientId\",\"type\":\"string\"},{\"name\":\"clientSegmento\",\"type\":\"string\"},{\"name\":\"valorLancamento\",\"type\":\"double\"},{\"name\":\"vencimentoLancamento\",\"type\":\"string\"},{\"name\":\"descontoLancamento\",\"type\":\"double\"},{\"name\":\"jurosLancamento\",\"type\":\"double\"},{\"name\":\"dataLancamento\",\"type\":\"string\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -290,8 +290,8 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
    * Creates a new LancamentoEvent RecordBuilder.
    * @return A new LancamentoEvent RecordBuilder
    */
-  public static br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder newBuilder() {
-    return new br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder();
+  public static br.com.jdsb.hub.avro.LancamentoEvent.Builder newBuilder() {
+    return new br.com.jdsb.hub.avro.LancamentoEvent.Builder();
   }
 
   /**
@@ -299,11 +299,11 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
    * @param other The existing builder to copy.
    * @return A new LancamentoEvent RecordBuilder
    */
-  public static br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder newBuilder(br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder other) {
+  public static br.com.jdsb.hub.avro.LancamentoEvent.Builder newBuilder(br.com.jdsb.hub.avro.LancamentoEvent.Builder other) {
     if (other == null) {
-      return new br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder();
+      return new br.com.jdsb.hub.avro.LancamentoEvent.Builder();
     } else {
-      return new br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder(other);
+      return new br.com.jdsb.hub.avro.LancamentoEvent.Builder(other);
     }
   }
 
@@ -312,11 +312,11 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
    * @param other The existing instance to copy.
    * @return A new LancamentoEvent RecordBuilder
    */
-  public static br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder newBuilder(br.com.jdsb.hublancamentos.avro.LancamentoEvent other) {
+  public static br.com.jdsb.hub.avro.LancamentoEvent.Builder newBuilder(br.com.jdsb.hub.avro.LancamentoEvent other) {
     if (other == null) {
-      return new br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder();
+      return new br.com.jdsb.hub.avro.LancamentoEvent.Builder();
     } else {
-      return new br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder(other);
+      return new br.com.jdsb.hub.avro.LancamentoEvent.Builder(other);
     }
   }
 
@@ -345,7 +345,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder other) {
+    private Builder(br.com.jdsb.hub.avro.LancamentoEvent.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.id)) {
         this.id = data().deepCopy(fields()[0].schema(), other.id);
@@ -385,7 +385,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
      * Creates a Builder by copying an existing LancamentoEvent instance
      * @param other The existing instance to copy.
      */
-    private Builder(br.com.jdsb.hublancamentos.avro.LancamentoEvent other) {
+    private Builder(br.com.jdsb.hub.avro.LancamentoEvent other) {
       super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.id)) {
         this.id = data().deepCopy(fields()[0].schema(), other.id);
@@ -435,7 +435,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'id'.
       * @return This builder.
       */
-    public br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder setId(java.lang.CharSequence value) {
+    public br.com.jdsb.hub.avro.LancamentoEvent.Builder setId(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.id = value;
       fieldSetFlags()[0] = true;
@@ -455,7 +455,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'id' field.
       * @return This builder.
       */
-    public br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder clearId() {
+    public br.com.jdsb.hub.avro.LancamentoEvent.Builder clearId() {
       id = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -475,7 +475,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'clientId'.
       * @return This builder.
       */
-    public br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder setClientId(java.lang.CharSequence value) {
+    public br.com.jdsb.hub.avro.LancamentoEvent.Builder setClientId(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.clientId = value;
       fieldSetFlags()[1] = true;
@@ -495,7 +495,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'clientId' field.
       * @return This builder.
       */
-    public br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder clearClientId() {
+    public br.com.jdsb.hub.avro.LancamentoEvent.Builder clearClientId() {
       clientId = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -515,7 +515,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'clientSegmento'.
       * @return This builder.
       */
-    public br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder setClientSegmento(java.lang.CharSequence value) {
+    public br.com.jdsb.hub.avro.LancamentoEvent.Builder setClientSegmento(java.lang.CharSequence value) {
       validate(fields()[2], value);
       this.clientSegmento = value;
       fieldSetFlags()[2] = true;
@@ -535,7 +535,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'clientSegmento' field.
       * @return This builder.
       */
-    public br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder clearClientSegmento() {
+    public br.com.jdsb.hub.avro.LancamentoEvent.Builder clearClientSegmento() {
       clientSegmento = null;
       fieldSetFlags()[2] = false;
       return this;
@@ -555,7 +555,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'valorLancamento'.
       * @return This builder.
       */
-    public br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder setValorLancamento(double value) {
+    public br.com.jdsb.hub.avro.LancamentoEvent.Builder setValorLancamento(double value) {
       validate(fields()[3], value);
       this.valorLancamento = value;
       fieldSetFlags()[3] = true;
@@ -575,7 +575,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'valorLancamento' field.
       * @return This builder.
       */
-    public br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder clearValorLancamento() {
+    public br.com.jdsb.hub.avro.LancamentoEvent.Builder clearValorLancamento() {
       fieldSetFlags()[3] = false;
       return this;
     }
@@ -594,7 +594,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'vencimentoLancamento'.
       * @return This builder.
       */
-    public br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder setVencimentoLancamento(java.lang.CharSequence value) {
+    public br.com.jdsb.hub.avro.LancamentoEvent.Builder setVencimentoLancamento(java.lang.CharSequence value) {
       validate(fields()[4], value);
       this.vencimentoLancamento = value;
       fieldSetFlags()[4] = true;
@@ -614,7 +614,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'vencimentoLancamento' field.
       * @return This builder.
       */
-    public br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder clearVencimentoLancamento() {
+    public br.com.jdsb.hub.avro.LancamentoEvent.Builder clearVencimentoLancamento() {
       vencimentoLancamento = null;
       fieldSetFlags()[4] = false;
       return this;
@@ -634,7 +634,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'descontoLancamento'.
       * @return This builder.
       */
-    public br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder setDescontoLancamento(double value) {
+    public br.com.jdsb.hub.avro.LancamentoEvent.Builder setDescontoLancamento(double value) {
       validate(fields()[5], value);
       this.descontoLancamento = value;
       fieldSetFlags()[5] = true;
@@ -654,7 +654,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'descontoLancamento' field.
       * @return This builder.
       */
-    public br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder clearDescontoLancamento() {
+    public br.com.jdsb.hub.avro.LancamentoEvent.Builder clearDescontoLancamento() {
       fieldSetFlags()[5] = false;
       return this;
     }
@@ -673,7 +673,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'jurosLancamento'.
       * @return This builder.
       */
-    public br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder setJurosLancamento(double value) {
+    public br.com.jdsb.hub.avro.LancamentoEvent.Builder setJurosLancamento(double value) {
       validate(fields()[6], value);
       this.jurosLancamento = value;
       fieldSetFlags()[6] = true;
@@ -693,7 +693,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'jurosLancamento' field.
       * @return This builder.
       */
-    public br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder clearJurosLancamento() {
+    public br.com.jdsb.hub.avro.LancamentoEvent.Builder clearJurosLancamento() {
       fieldSetFlags()[6] = false;
       return this;
     }
@@ -712,7 +712,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'dataLancamento'.
       * @return This builder.
       */
-    public br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder setDataLancamento(java.lang.CharSequence value) {
+    public br.com.jdsb.hub.avro.LancamentoEvent.Builder setDataLancamento(java.lang.CharSequence value) {
       validate(fields()[7], value);
       this.dataLancamento = value;
       fieldSetFlags()[7] = true;
@@ -732,7 +732,7 @@ public class LancamentoEvent extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'dataLancamento' field.
       * @return This builder.
       */
-    public br.com.jdsb.hublancamentos.avro.LancamentoEvent.Builder clearDataLancamento() {
+    public br.com.jdsb.hub.avro.LancamentoEvent.Builder clearDataLancamento() {
       dataLancamento = null;
       fieldSetFlags()[7] = false;
       return this;

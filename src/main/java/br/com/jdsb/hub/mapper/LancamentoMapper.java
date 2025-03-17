@@ -1,8 +1,8 @@
-package br.com.jdsb.hublancamentos.mapper;
+package br.com.jdsb.hub.mapper;
 
-import br.com.jdsb.hublancamentos.avro.LancamentoEvent;
-import br.com.jdsb.hublancamentos.dto.LancamentoDTO;
-import br.com.jdsb.hublancamentos.entity.LancamentoEntity;
+import br.com.jdsb.hub.avro.LancamentoEvent;
+import br.com.jdsb.hub.dto.LancamentoDTO;
+import br.com.jdsb.hub.entity.LancamentoEntity;
 
 public class LancamentoMapper {
 

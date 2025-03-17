@@ -1,4 +1,4 @@
-package br.com.jdsb.hublancamentos.converter;
+package br.com.jdsb.hub.converter;
 
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
